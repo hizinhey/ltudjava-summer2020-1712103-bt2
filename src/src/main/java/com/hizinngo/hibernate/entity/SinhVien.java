@@ -22,7 +22,6 @@ public class SinhVien {
     }
 
     @Id
-    @GeneratedValue
     @Column(name = "MSSV")
     public String getMSSV() {
         return MSSV;

@@ -31,6 +31,7 @@ public class DonPhucKhao {
     }
 
     @Id
+    @GeneratedValue
     @Column(name = "id")
     public int getId() {
         return id;
@@ -105,7 +106,6 @@ public class DonPhucKhao {
 
     @ManyToOne
     @JoinColumn(name = "DotPhucKhao")
-    @Column(name = "DotPhucKhao")
     public DotPhucKhao getDotPhucKhao() {
         return DotPhucKhao;
     }

@@ -6,14 +6,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "taikhoan")
-public class TaiKhoan {
+public class TaiKhoan implements Serializable {
     private String Taikhoan;
     private String MatKhau;
     private int Quyen;
 
+    public TaiKhoan(){};
     public TaiKhoan(String taikhoan, String matKhau, int quyen) {
         Taikhoan = taikhoan;
         MatKhau = matKhau;

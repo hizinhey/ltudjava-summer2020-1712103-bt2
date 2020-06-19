@@ -1,23 +1,22 @@
 package com.hizinngo.hibernate.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.hizinngo.hibernate.entity.subclass.LopToMonHocPK;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "lop_monhoc")
+@IdClass(LopToMonHocPK.class)
 public class LopToMonHoc {
     private String MaLop;
     private String MaMH;
     private String Phong;
-    private int TrangThai;
 
-    public LopToMonHoc(String maLop, String maMH, String phong, int trangThai) {
+    public LopToMonHoc(){};
+    public LopToMonHoc(String maLop, String maMH, String phong) {
         MaLop = maLop;
         MaMH = maMH;
         Phong = phong;
-        TrangThai = trangThai;
     }
 
     @Id
@@ -47,14 +46,5 @@ public class LopToMonHoc {
 
     public void setPhong(String phong) {
         Phong = phong;
-    }
-
-    @Column(name = "TrangThai")
-    public int getTrangThai() {
-        return TrangThai;
-    }
-
-    public void setTrangThai(int trangThai) {
-        TrangThai = trangThai;
     }
 }

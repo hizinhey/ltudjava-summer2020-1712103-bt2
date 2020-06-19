@@ -1,12 +1,12 @@
 package com.hizinngo.hibernate.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.hizinngo.hibernate.entity.subclass.SinhVienToLopHocPK;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "sinhvien_lophoc")
+@IdClass(SinhVienToLopHocPK.class)
 public class SinhVienToLopHoc {
     private String MSSV;
     private String MaLop;
@@ -16,6 +16,8 @@ public class SinhVienToLopHoc {
     private float DiemKhac;
     private float DiemTong;
 
+    public SinhVienToLopHoc(){
+    };
     public SinhVienToLopHoc(String MSSV, String maLop, String maMH, float diemGK, float diemCK, float diemKhac, float diemTong) {
         this.MSSV = MSSV;
         MaLop = maLop;
@@ -36,7 +38,6 @@ public class SinhVienToLopHoc {
         this.MSSV = MSSV;
     }
 
-    @Id
     @Column(name = "MaLop")
     public String getMaLop() {
         return MaLop;

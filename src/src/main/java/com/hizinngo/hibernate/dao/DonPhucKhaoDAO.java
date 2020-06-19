@@ -65,8 +65,8 @@ public class DonPhucKhaoDAO {
     }
     public static void main(String[] args) {
         //TODO: Test DonPhucKhao
-        DonPhucKhaoDAO.themDonPhucKhao(new DonPhucKhao(1, "testsv1", "test1", "TEST1",
-                "DiemGK", 9.0f, "Em khong biet",
-                1, DotPhucKhaoDAO.layDotPhucKhao(1)));
+        DonPhucKhaoDAO.themDonPhucKhao(new DonPhucKhao(2, "testsv1", "test2", "TEST1",
+                "DiemGK", 9.5f, "Em khong biet",
+                1, DotPhucKhaoDAO.layDotPhucKhao(3)));
     }
 }

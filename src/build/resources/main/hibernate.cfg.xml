@@ -18,5 +18,9 @@
         <mapping class="com.hizinngo.hibernate.entity.SinhVien"/>
         <mapping class="com.hizinngo.hibernate.entity.DonPhucKhao"/>
         <mapping class="com.hizinngo.hibernate.entity.DotPhucKhao"/>
+        <mapping class="com.hizinngo.hibernate.entity.LopToMonHoc"/>
+        <mapping class="com.hizinngo.hibernate.entity.SinhVienToLopHoc"/>
+        <mapping class="com.hizinngo.hibernate.entity.MonHoc"/>
+        <mapping class="com.hizinngo.hibernate.entity.TaiKhoan"/>
     </session-factory>
 </hibernate-configuration>

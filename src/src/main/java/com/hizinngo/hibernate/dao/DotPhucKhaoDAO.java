@@ -66,6 +66,7 @@ public class DotPhucKhaoDAO {
 
     public static void main(String[] args) {
         DotPhucKhao dotPhucKhao = new DotPhucKhao();
+        dotPhucKhao.setId(2);
         dotPhucKhao.setNgayBatDau(new Date());
         dotPhucKhao.setNgayKetThuc(new Date());
         DotPhucKhaoDAO.themDotPhucKhao(dotPhucKhao);
