@@ -4,7 +4,7 @@ Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class catalog="hibernate"
-           name="com.hizinngo.hibernate.model.Lop" table="Lop">
+           name="com.hizinngo.hibernate.entity.Lop" table="Lop">
         <id name="MaLop" type="string">
             <column length="5" name="MaLop"/>
             <generator class="assigned"/>

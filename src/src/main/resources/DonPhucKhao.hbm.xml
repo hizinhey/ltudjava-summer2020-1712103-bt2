@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate
+Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="hibernate"
+           name="com.hizinngo.hibernate.entity.DonPhucKhao" table="DonPhucKhao">
+        <id name="id" type="int">
+            <column name="id" length="11"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="MSSV" type="string">
+            <column name="MSSV" length="7"/>
+        </property>
+        <property name="HoTen" type="string">
+            <column name="HoTen" length="60"/>
+        </property>
+        <property name="Mon" type="string">
+            <column name="Mon" length="5"/>
+        </property>
+        <property name="CotDiem" type="string">
+            <column name="CotDiem" length="8"/>
+        </property>
+        <property name="DiemMongMuon" type="float">
+            <column name="DiemMongMuon" length="2,1"/>
+        </property>
+        <property name="LiDo" type="string">
+            <column name="LiDo" length="4000"/>
+        </property>
+        <property name="TrangThai" type="int">
+            <column name="TrangThai" length="11"/>
+        </property>
+        <property name="DotPhucKhao" type="int">
+            <column name="DotPhucKhao" length="11"/>
+        </property>
+
+    </class>
+</hibernate-mapping>

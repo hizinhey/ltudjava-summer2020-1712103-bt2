@@ -1,9 +1,8 @@
 package com.hizinngo.hibernate;
 
-import com.hizinngo.hibernate.model.Lop;
-import com.hizinngo.hibernate.utils.LopDAO;
+import com.hizinngo.hibernate.entity.Lop;
+import com.hizinngo.hibernate.dao.LopDAO;
 
-import javax.swing.*;
 import java.util.List;
 
 public class Main {
