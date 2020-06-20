@@ -5,7 +5,13 @@
  */
 package com.hizinngo.hibernate.views;
 
+import com.hizinngo.hibernate.MainFrame;
+import com.hizinngo.hibernate.dao.TaiKhoanDAO;
+import com.hizinngo.hibernate.entity.TaiKhoan;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -28,8 +34,7 @@ public class DoiMatKhauView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        //seft
-        setPreferredSize(new Dimension(940,768));
+        setPreferredSize(new Dimension(940, 768));
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -37,6 +42,7 @@ public class DoiMatKhauView extends javax.swing.JPanel {
         btnChange = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         txtConform = new javax.swing.JPasswordField();
+        lblNotification = new javax.swing.JLabel();
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -47,28 +53,51 @@ public class DoiMatKhauView extends javax.swing.JPanel {
         jLabel2.setText("Conform new password:");
 
         btnChange.setText("Change password");
+        btnChange.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String pass = txtPassword.getText();
+                String conform = txtPassword.getText();
+
+                if(!pass.equals(conform)){
+                    lblNotification.setText("The new password is not as same as the conform password.");
+                } else if(pass.length() < 6){
+                    lblNotification.setText("The length of your new password is too short (less than 6)");
+                } else {
+                    TaiKhoan update = MainFrame.getInstance().getTaiKhoan();
+                    update.setMatKhau(pass);
+                    boolean kt = TaiKhoanDAO.chinhSuaTaiKhoan(update);
+                    txtConform.setText("");
+                    txtPassword.setText("");
+                    lblNotification.setText((kt)?"Change password succesfully":"There is a problem when changing.");
+                }
+            }
+        });
+
+        lblNotification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNotification.setText("Notification");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtConform, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPassword))))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtConform))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPassword)))
                 .addContainerGap())
+            .addComponent(lblNotification, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(278, 278, 278)
+                .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(278, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,9 +110,11 @@ public class DoiMatKhauView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtConform, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
+                .addComponent(lblNotification)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -110,6 +141,7 @@ public class DoiMatKhauView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblNotification;
     private javax.swing.JPasswordField txtConform;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables

@@ -5,7 +5,20 @@
  */
 package com.hizinngo.hibernate.views;
 
+import com.hizinngo.hibernate.dao.LopDAO;
+import com.hizinngo.hibernate.dao.SinhVienDAO;
+import com.hizinngo.hibernate.dao.TaiKhoanDAO;
+import com.hizinngo.hibernate.entity.Lop;
+import com.hizinngo.hibernate.entity.SinhVien;
+import com.hizinngo.hibernate.entity.TaiKhoan;
+import com.hizinngo.hibernate.views.component.JFilePicker;
+
+import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -148,6 +161,40 @@ public class DanhSachLopView extends javax.swing.JPanel {
 
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
         // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+
+        if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
+            File csv = fileChooser.getSelectedFile().getAbsoluteFile();
+            BufferedReader br = null;
+            try {
+                br = new BufferedReader(new FileReader(csv));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            String lop, temp;
+            List<SinhVien> list = new ArrayList<>();
+            List<String> tempStr= new ArrayList<>();
+
+            try {
+                lop = br.readLine();
+                while ((temp = br.readLine()) != null){
+                    tempStr = Arrays.asList(temp.split(","));
+                    list.add(new SinhVien(tempStr.get(1), tempStr.get(2),tempStr.get(3),tempStr.get(4), 1, lop));
+                }
+
+                LopDAO.themLop(new Lop(lop));
+                for(SinhVien e: list){
+                    SinhVienDAO.themSinhVien(e);
+                    TaiKhoanDAO.taoTaiKhoan(new TaiKhoan(e.getMSSV(), e.getMSSV(), 2));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
     }//GEN-LAST:event_btnImportActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
