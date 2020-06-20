@@ -6,6 +6,8 @@ package com.hizinngo.hibernate.views;
  * and open the template in the editor.
  */
 
+import java.awt.*;
+
 /**
  *
  * @author nghia
@@ -27,6 +29,7 @@ public class TraCuuDiemView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        setPreferredSize(new Dimension(940,768));
 
         btnImport = new javax.swing.JButton();
         txtClass = new javax.swing.JTextField();

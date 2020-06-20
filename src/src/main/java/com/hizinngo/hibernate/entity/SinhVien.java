@@ -12,6 +12,7 @@ public class SinhVien {
     private int TinhTrang;
     private String MaLop; //Do lop chua thong tin malop, khong can quan tam many to one
 
+    public SinhVien(){};
     public SinhVien(String MSSV, String ten, String gioiTinh, String CMND, int tinhTrang, String maLop) {
         this.MSSV = MSSV;
         this.ten = ten;

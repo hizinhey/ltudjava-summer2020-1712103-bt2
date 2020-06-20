@@ -8,6 +8,7 @@ public class MonHoc {
     private String MaMH;
     private String TenMH;
 
+    public MonHoc(){};
     public MonHoc(String maMH, String tenMH) {
         MaMH = maMH;
         TenMH = tenMH;

@@ -5,6 +5,8 @@
  */
 package com.hizinngo.hibernate.views;
 
+import java.awt.*;
+
 /**
  *
  * @author nghia
@@ -26,6 +28,8 @@ public class Navigation extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        // seft
+        setPreferredSize(new Dimension(300,768));
 
         lblUser = new javax.swing.JLabel();
         btnNavi1 = new javax.swing.JButton();

@@ -16,8 +16,7 @@ public class DonPhucKhao {
     private DotPhucKhao DotPhucKhao;
 
 
-    public DonPhucKhao(){
-    };
+    public DonPhucKhao(){};
     public DonPhucKhao(int id, String MSSV, String hoTen, String mon, String cotDiem, float diemMongMuon, String liDo, int trangThai, DotPhucKhao dotPhucKhao) {
         this.id = id;
         this.MSSV = MSSV;

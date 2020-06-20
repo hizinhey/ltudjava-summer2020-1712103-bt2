@@ -61,6 +61,6 @@ public class TaiKhoanDAO {
         return true;
     }
     public static void main(String[] args) {
-        chinhSuaTaiKhoan(new TaiKhoan("testsv2", "125456", 2));
+        System.out.println(layTaiKhoan("giaovu").getTaikhoan());;
     }
 }

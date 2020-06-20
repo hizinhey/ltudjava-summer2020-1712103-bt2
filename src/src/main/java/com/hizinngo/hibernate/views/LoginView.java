@@ -5,11 +5,17 @@
  */
 package com.hizinngo.hibernate.views;
 
+import com.hizinngo.hibernate.dao.TaiKhoanDAO;
+import com.hizinngo.hibernate.entity.TaiKhoan;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author nghia
  */
-public class LoginView extends javax.swing.JFrame {
+public class LoginView extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJFrame
@@ -35,8 +41,6 @@ public class LoginView extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         lblNotification = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -64,6 +68,13 @@ public class LoginView extends javax.swing.JFrame {
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
+            }
+        });
+
+        btnLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnLoginActionPerformed(e);
             }
         });
 
@@ -111,7 +122,7 @@ public class LoginView extends javax.swing.JFrame {
                 .addGap(86, 86, 86))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+/*        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,15 +139,30 @@ public class LoginView extends javax.swing.JFrame {
                 .addGap(109, 109, 109))
         );
 
-        pack();
+        pack();*/
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
+        String user = txtUsername.getText();
+        String pass = txtPassword.getText();
+
+        TaiKhoan taiKhoan = TaiKhoanDAO.layTaiKhoan(user);
+        if(taiKhoan != null){
+            if(taiKhoan.getMatKhau().equals(pass)){
+                //TestPane tp = new TestPane(new Navigation(), new DanhSachLopView());
+            } else {
+                lblNotification.setText("The password is not correct");
+            }
+        } else {
+            lblNotification.setText("The username is not exist");
+        }
+
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

@@ -5,6 +5,8 @@
  */
 package com.hizinngo.hibernate.views;
 
+import java.awt.*;
+
 /**
  *
  * @author nghia
@@ -26,6 +28,7 @@ public class ThoiKhoaBieuView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        setPreferredSize(new Dimension(940,768));
 
         btnImport = new javax.swing.JButton();
         javax.swing.JTextField txtFindClass = new javax.swing.JTextField();

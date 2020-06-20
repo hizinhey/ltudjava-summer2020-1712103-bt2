@@ -82,9 +82,7 @@ public class SinhVienDAO {
     }
 
     public static void main(String[] args) {
-        List<SinhVien> sv =SinhVienDAO.layDanhSachSinhVienTheoLop("TEST2");
-        for(SinhVien row: sv){
-            System.out.println(row.getMSSV());
-        }
+        SinhVien sv = SinhVienDAO.laySinhVien("testsv1");
+        System.out.println(sv);
     }
 }
