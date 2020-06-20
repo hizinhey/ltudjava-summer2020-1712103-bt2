@@ -5,14 +5,19 @@
  */
 package com.hizinngo.hibernate.views;
 
+import com.hizinngo.hibernate.MainFrame;
+import com.hizinngo.hibernate.entity.TaiKhoan;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  *
  * @author nghia
  */
 public class Navigation extends javax.swing.JPanel {
-
+    MainFrame frame;
+    TaiKhoan userlogin;
     /**
      * Creates new form Navigation
      */
@@ -30,6 +35,8 @@ public class Navigation extends javax.swing.JPanel {
     private void initComponents() {
         // seft
         setPreferredSize(new Dimension(300,768));
+        frame = MainFrame.getInstance();
+        userlogin = frame.getTaiKhoan();
 
         lblUser = new javax.swing.JLabel();
         btnNavi1 = new javax.swing.JButton();
@@ -44,6 +51,11 @@ public class Navigation extends javax.swing.JPanel {
         lblUser.setText("Giao vu");
 
         btnNavi1.setText("Class");
+        btnNavi1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNavi1ActionPerformed(evt);
+            }
+        });
 
         btnNavi2.setText("Schedule");
         btnNavi2.addActionListener(new java.awt.event.ActionListener() {
@@ -53,6 +65,12 @@ public class Navigation extends javax.swing.JPanel {
         });
 
         btnNavi3.setText("Scores");
+        btnNavi3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNavi3ActionPerformed(evt);
+            }
+        });
+
 
         btnNavi4.setText("Re-examination");
         btnNavi4.addActionListener(new java.awt.event.ActionListener() {
@@ -106,22 +124,51 @@ public class Navigation extends javax.swing.JPanel {
                 .addComponent(btnNavi6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(190, Short.MAX_VALUE))
         );
+
+        // set prio:
+        lblUser.setText(userlogin.getTaikhoan());
+
+        if(userlogin.getQuyen() == 2){
+            btnNavi1.setEnabled(false);
+            btnNavi2.setEnabled(false);
+            btnNavi4.setEnabled(false);
+        }
+
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNavi1ActionPerformed(java.awt.event.ActionEvent evt) {
+        frame.updateTwoPanel(new Navigation(), new TraCuuDiemView());
+        frame.setVisible(true);
+    }
+
+    private void btnNavi3ActionPerformed(java.awt.event.ActionEvent evt) {
+        frame.updateTwoPanel(new Navigation(), new TraCuuDiemView());
+        frame.setVisible(true);
+    }
 
     private void btnNavi2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavi2ActionPerformed
         // TODO add your handling code here:
+        frame.updateTwoPanel(new Navigation(), new ThoiKhoaBieuView());
+        frame.setVisible(true);
     }//GEN-LAST:event_btnNavi2ActionPerformed
 
     private void btnNavi5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavi5ActionPerformed
         // TODO add your handling code here:
+        frame.updateTwoPanel(new Navigation(), new DoiMatKhauView());
+        frame.setVisible(true);
     }//GEN-LAST:event_btnNavi5ActionPerformed
 
     private void btnNavi4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavi4ActionPerformed
         // TODO add your handling code here:
+        frame.updateTwoPanel(new Navigation(), new QuanLyPhucKhaoView());
+        frame.setVisible(true);
     }//GEN-LAST:event_btnNavi4ActionPerformed
 
     private void btnNavi6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavi6ActionPerformed
         // TODO add your handling code here:
+        frame.setTaiKhoan(new TaiKhoan());
+        frame.updateOnePanel(new MainLoginView());
+        frame.setVisible(true);
     }//GEN-LAST:event_btnNavi6ActionPerformed
 
 

@@ -5,6 +5,11 @@
  */
 package com.hizinngo.hibernate.views;
 
+import com.hizinngo.hibernate.Main;
+import com.hizinngo.hibernate.MainFrame;
+import com.hizinngo.hibernate.dao.TaiKhoanDAO;
+import com.hizinngo.hibernate.entity.TaiKhoan;
+
 /**
  *
  * @author nghia
@@ -43,7 +48,7 @@ public class MainLoginView extends javax.swing.JPanel {
         lblTitle.setText("LOGIN");
 
         txtUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtUsername.setText("Your username");
+        txtUsername.setText("");
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
@@ -57,7 +62,7 @@ public class MainLoginView extends javax.swing.JPanel {
         lblUsername.setText("Username:");
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtPassword.setText("password");
+        txtPassword.setText("");
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
@@ -139,6 +144,27 @@ public class MainLoginView extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        String user = txtUsername.getText();
+        String pass = txtPassword.getText();
+
+        TaiKhoan taiKhoan = TaiKhoanDAO.layTaiKhoan(user);
+        if(taiKhoan == null){
+            lblNotification.setText("No account have this username.");
+        } else {
+            if(taiKhoan.getMatKhau().equals(pass)){
+                MainFrame frame = MainFrame.getInstance();
+                frame.setTaiKhoan(taiKhoan);
+                if(taiKhoan.getQuyen() == 1) {
+                    frame.updateTwoPanel(new Navigation(), new DanhSachLopView());
+                } else if(taiKhoan.getQuyen() == 2){
+                    frame.updateTwoPanel(new Navigation(), new TraCuuDiemView());
+                }
+                frame.setVisible(true);
+            } else {
+                lblNotification.setText("Wrong password.");
+            }
+        }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
