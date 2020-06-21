@@ -193,6 +193,9 @@ public class DanhSachLopView extends javax.swing.JPanel {
                     SinhVienDAO.themSinhVien(e);
                     TaiKhoanDAO.taoTaiKhoan(new TaiKhoan(e.getMSSV(), e.getMSSV(), 2));
                 }
+
+                txtSearch.setText(lop);
+                btnSearch.doClick();
             } catch (IOException e) {
                 e.printStackTrace();
             }

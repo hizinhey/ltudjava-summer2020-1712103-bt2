@@ -137,7 +137,7 @@ public class Navigation extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNavi1ActionPerformed(java.awt.event.ActionEvent evt) {
-        frame.updateTwoPanel(new Navigation(), new TraCuuDiemView());
+        frame.updateTwoPanel(new Navigation(), new DanhSachLopView());
         frame.setVisible(true);
     }
 

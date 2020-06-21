@@ -37,7 +37,7 @@ public class SinhVienToLopHoc {
     public void setMSSV(String MSSV) {
         this.MSSV = MSSV;
     }
-
+    @Id
     @Column(name = "MaLop")
     public String getMaLop() {
         return MaLop;

@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public class SinhVienToLopHocPK implements Serializable {
     private String MSSV;
+    private String MaLop;
     private String MaMH;
 
     public SinhVienToLopHocPK(){};
-    public SinhVienToLopHocPK(String MSSV, String maMH) {
+    public SinhVienToLopHocPK(String MSSV, String maLop, String maMH) {
         this.MSSV = MSSV;
+        this.MaLop = maLop;
         MaMH = maMH;
     }
 
@@ -18,6 +20,14 @@ public class SinhVienToLopHocPK implements Serializable {
 
     public void setMSSV(String MSSV) {
         this.MSSV = MSSV;
+    }
+
+    public String getMaLop() {
+        return MaLop;
+    }
+
+    public void setMaLop(String maLop) {
+        MaLop = maLop;
     }
 
     public String getMaMH() {

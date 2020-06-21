@@ -26,9 +26,10 @@ public class ThoiKhoaBieuView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        setPreferredSize(new Dimension(940,768));
 
         btnImport = new javax.swing.JButton();
-        javax.swing.JTextField txtFindClass = new javax.swing.JTextField();
+        txtFindClass = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -125,24 +126,105 @@ public class ThoiKhoaBieuView extends javax.swing.JPanel {
                         .addComponent(txtFindClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnSearch))
                     .addComponent(btnImport))
-                .addGap(26, 26, 26)
-                .addComponent(lblClass, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblClass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
         // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File csv = fileChooser.getSelectedFile().getAbsoluteFile();
+            BufferedReader br = null;
+            try {
+                br = new BufferedReader(new FileReader(csv));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            String lop, temp;
+            List<MonHoc> listMH = new ArrayList<>();
+            List<LopToMonHoc> listLopToMonHoc = new ArrayList<>();
+
+            List<String> tempStr = new ArrayList<>();
+
+            try {
+                lop = br.readLine();
+                while ((temp = br.readLine()) != null) {
+                    tempStr = Arrays.asList(temp.split(","));
+                    listMH.add(new MonHoc(tempStr.get(1), tempStr.get(2)));
+                    listLopToMonHoc.add(new LopToMonHoc(lop, tempStr.get(1), tempStr.get(3)));
+                }
+
+                LopDAO.themLop(new Lop(lop));
+
+                for (MonHoc e : listMH) {
+                    MonHocDAO.themMonHoc(e);
+                }
+
+                for (LopToMonHoc e : listLopToMonHoc) {
+                    LopToMonHocDAO.themLopToMonHoc(e);
+                }
+
+                List<SinhVien> listSV = SinhVienDAO.layDanhSachSinhVienTheoLop(lop);
+                for (SinhVien eSV : listSV) {
+                    for (MonHoc eMH : listMH) {
+                        SinhVienToLopHocDAO.themSinhVienToLopHoc(new SinhVienToLopHoc(eSV.getMSSV(), lop, eMH.getMaMH(), 0f, 0f, 0f, 0f));
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnImportActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+        String classID = txtFindClass.getText();
+        lblClass.setText(classID);
+
+        if (classID.length() == 5) {
+            List<ThoiKhoaBieu> list = new ArrayList<>();
+            list = LopToMonHocDAO.layThoiKhoaBieuTheoLop(classID);
+            if(list != null){
+                Vector data = new Vector();
+
+                for(int i = 1; i<= list.size(); i++){
+                    ThoiKhoaBieu element = list.get(i - 1);
+                    Vector row = new Vector();
+                    row.add(i+"");
+                    row.add(element.getMaMH());
+                    row.add(element.getTenMH());
+                    row.add(element.getPhong());
+
+                    data.add(row);
+                }
+
+                Vector header = new Vector();
+                header.add("No");
+                header.add("Student ID");
+                header.add("Title");
+                header.add("Room");
+
+                jTable1.setModel(new DefaultTableModel(data, header));
+            } else {
+                lblClass.setText("No data for " + classID);
+            }
+        } else {
+            txtFindClass.setText("Wrong format!");
+        }
+
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField txtFindClass;
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnSearch;
     private javax.swing.JScrollPane jScrollPane1;
