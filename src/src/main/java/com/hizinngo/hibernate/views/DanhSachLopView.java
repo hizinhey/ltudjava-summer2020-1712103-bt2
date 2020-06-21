@@ -199,6 +199,12 @@ public class DanhSachLopView extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        JFrame addStudent = new JFrame();
+        addStudent.setSize(350,700);
+        addStudent.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        addStudent.setLocation(360,100);
+        addStudent.add(new ThemSinhVienView(addStudent));
+        addStudent.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
