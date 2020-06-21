@@ -7,6 +7,7 @@ package com.hizinngo.hibernate.views;
 
 import com.hizinngo.hibernate.dao.LopDAO;
 import com.hizinngo.hibernate.dao.SinhVienDAO;
+import com.hizinngo.hibernate.dao.SinhVienToLopHocDAO;
 import com.hizinngo.hibernate.dao.TaiKhoanDAO;
 import com.hizinngo.hibernate.entity.Lop;
 import com.hizinngo.hibernate.entity.SinhVien;
@@ -14,8 +15,12 @@ import com.hizinngo.hibernate.entity.TaiKhoan;
 import com.hizinngo.hibernate.views.component.JFilePicker;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.io.*;
+import java.util.Vector;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -209,6 +214,36 @@ public class DanhSachLopView extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+        String classID = txtSearch.getText();
+        List<SinhVien> list = null;
+        if(classID.length() == 5){
+            list = SinhVienDAO.layDanhSachSinhVienTheoLop(classID);
+        } else if(classID.contains("-")){
+            List<String> temp = Arrays.asList(classID.split("-"));
+            list = SinhVienToLopHocDAO.layDanhSachSinhVienTheoLopHoc(temp.get(0),temp.get(1));
+        }
+        Vector data = new Vector();
+
+        for(int i = 1; i<= list.size(); i++){
+            SinhVien element = list.get(i - 1);
+            Vector row = new Vector();
+            row.add(i+"");
+            row.add(element.getMSSV());
+            row.add(element.getTen());
+            row.add(element.getGioiTinh());
+            row.add(element.getCMND());
+
+            data.add(row);
+        }
+
+        Vector header = new Vector();
+        header.add("No");
+        header.add("Student ID");
+        header.add("Name");
+        header.add("Gender");
+        header.add("PersonID");
+
+        jTable1.setModel(new DefaultTableModel(data, header));
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
