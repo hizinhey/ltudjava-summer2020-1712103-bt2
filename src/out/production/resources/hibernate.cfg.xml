@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property
+                name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/hibernate?hibernate&amp;useUnicode=true&amp;characterEncoding=UTF-8
+        </property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">123456</property>
+
+        <property name="hbm2ddl.auto">update</property>
+
+        <mapping class="com.hizinngo.hibernate.entity.Lop"/>
+        <mapping class="com.hizinngo.hibernate.entity.SinhVien"/>
+        <mapping class="com.hizinngo.hibernate.entity.DonPhucKhao"/>
+        <mapping class="com.hizinngo.hibernate.entity.DotPhucKhao"/>
+        <mapping class="com.hizinngo.hibernate.entity.LopToMonHoc"/>
+        <mapping class="com.hizinngo.hibernate.entity.SinhVienToLopHoc"/>
+        <mapping class="com.hizinngo.hibernate.entity.MonHoc"/>
+        <mapping class="com.hizinngo.hibernate.entity.TaiKhoan"/>
+    </session-factory>
+</hibernate-configuration>

@@ -1,11 +1,10 @@
 package com.hizinngo.hibernate.dao;
 
-import com.hizinngo.hibernate.entity.LopToMonHoc;
 import com.hizinngo.hibernate.entity.SinhVien;
 import com.hizinngo.hibernate.entity.SinhVienToLopHoc;
-import com.hizinngo.hibernate.entity.subclass.LopToMonHocPK;
 import com.hizinngo.hibernate.entity.subclass.PackSinhVien;
 import com.hizinngo.hibernate.entity.subclass.SinhVienToLopHocPK;
+import com.hizinngo.hibernate.entity.subclass.PackDiemMonHoc;
 import com.hizinngo.hibernate.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -143,7 +142,25 @@ public class SinhVienToLopHocDAO {
         return true;
     }
 
+    public static List<PackDiemMonHoc> layDiemSinhViem(String MSSV){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<PackDiemMonHoc> ds = null;
+        try{
+            String hql = "select new com.hizinngo.hibernate.entity.subclass.PackDiemMonHoc( mh.maMH, mh.tenMH, svlh.diemGK, svlh.diemCK, svlh.diemKhac, svlh.diemTong) " +
+                    "from  SinhVienToLopHoc svlh, MonHoc mh " +
+                    "where svlh.MSSV = '" + MSSV + "' and svlh.maMH = mh.maMH";
+            Query query = session.createQuery(hql);
+            ds = query.list();
+        } catch (HibernateException ex) {
+            //Log the exception
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return ds;
+    }
+
     public static void main(String[] args) {
-        System.out.println(layDanhSachDiemSinhVienTheoLopTraVeSinhVienToLopHoc("18HCB", "CTT001").size());
+        System.out.println(layDiemSinhViem("1842002").size());
     }
 }

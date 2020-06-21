@@ -6,10 +6,11 @@ package com.hizinngo.hibernate.views;
  * and open the template in the editor.
  */
 
+import com.hizinngo.hibernate.MainFrame;
 import com.hizinngo.hibernate.dao.*;
 import com.hizinngo.hibernate.entity.*;
 import com.hizinngo.hibernate.entity.subclass.PackSinhVien;
-import com.hizinngo.hibernate.entity.subclass.ThoiKhoaBieu;
+import com.hizinngo.hibernate.entity.subclass.PackDiemMonHoc;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -53,6 +54,62 @@ public class TraCuuDiemView extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         btnManage = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+
+        if(MainFrame.getInstance().getTaiKhoan().getQuyen() == 2){
+            btnImport.setEnabled(false);
+            btnUpdate.setEnabled(false);
+            btnSearch.setEnabled(false);
+            btnManage.setEnabled(false);
+            txtClass.setText(MainFrame.getInstance().getTaiKhoan().getTaikhoan());
+            txtClass.setEnabled(false);
+
+            //them csdl
+            lblClass.setText(MainFrame.getInstance().getTaiKhoan().getTaikhoan());
+            List<PackDiemMonHoc> list=SinhVienToLopHocDAO.layDiemSinhViem(MainFrame.getInstance().getTaiKhoan().getTaikhoan());
+            if(list != null){
+                Vector data = new Vector();
+
+                for(int i = 1; i<= list.size(); i++){
+                    PackDiemMonHoc element = list.get(i - 1);
+
+                    Vector row = new Vector();
+                    row.add(i+"");
+                    row.add(element.getMaMH());
+                    row.add(element.getTenMH());
+                    row.add(element.getDiem1());
+                    row.add(element.getDiem2());
+                    row.add(element.getDiem3());
+                    row.add(element.getDiem4());
+
+                    data.add(row);
+                }
+
+                Vector header = new Vector();
+                header.add("No");
+                header.add("Subject ID");
+                header.add("Subject");
+                header.add("Middle scores");
+                header.add("Final scores");
+                header.add("Other Scores");
+                header.add("Conlusion");
+
+                jTable1.setModel(new DefaultTableModel(data, header));
+            } else {
+                lblClass.setText("17CTT1");
+
+                jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+                                {null, null, null, null, null, null, null},
+                                {null, null, null, null, null, null, null},
+                                {null, null, null, null, null, null, null},
+                                {null, null, null, null, null, null, null}
+                        },
+                        new String [] {
+                                "No", "Student ID", "Name", "Middel scores", "Final scores", "Other scores", "Conlusion"
+                        }
+                ));
+            }
+        }
 
         btnImport.setText("Import CSV");
         btnImport.addActionListener(new ActionListener() {
@@ -152,19 +209,7 @@ public class TraCuuDiemView extends javax.swing.JPanel {
             }
         });
 
-        lblClass.setText("17CTT1");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "No", "Student ID", "Name", "Middel scores", "Final scores", "Other scores", "Conlusion"
-            }
-        ));
         jTable1.setRowHeight(40);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -181,7 +226,6 @@ public class TraCuuDiemView extends javax.swing.JPanel {
         btnManage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(lblClass.getText().substring(0,5));
                 JFrame frame = new CapNhatdiem(lblClass.getText().substring(0,5));
                 frame.setSize(960,440);
                 frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
