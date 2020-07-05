@@ -1,6 +1,7 @@
 package com.hizinngo.hibernate.dao;
 
 import com.hizinngo.hibernate.entity.TaiKhoan;
+import com.hizinngo.hibernate.log.LogUtil;
 import com.hizinngo.hibernate.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -35,6 +36,7 @@ public class TaiKhoanDAO {
             tk = (TaiKhoan)session.get(TaiKhoan.class, taiKhoan);
         } catch (HibernateException ex){
             System.err.println(ex);
+            LogUtil.printLog(ex.getMessage());
         } finally {
             session.close();
         }

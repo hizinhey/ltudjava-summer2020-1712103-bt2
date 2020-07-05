@@ -418,7 +418,6 @@ public class QuanLyPhucKhaoView extends javax.swing.JPanel {
 
             jTable1.setModel(new DefaultTableModel(data, header));
 
-
             btnSearch.setEnabled(false);
             txtStudentID.setEditable(false);
 

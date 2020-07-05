@@ -10,6 +10,8 @@ import com.hizinngo.hibernate.MainFrame;
 import com.hizinngo.hibernate.dao.TaiKhoanDAO;
 import com.hizinngo.hibernate.entity.TaiKhoan;
 
+import javax.swing.*;
+
 /**
  *
  * @author nghia
@@ -146,23 +148,29 @@ public class MainLoginView extends javax.swing.JPanel {
         // TODO add your handling code here:
         String user = txtUsername.getText();
         String pass = txtPassword.getText();
+        lblNotification.setText("1");
 
-        TaiKhoan taiKhoan = TaiKhoanDAO.layTaiKhoan(user);
-        if(taiKhoan == null){
-            lblNotification.setText("No account have this username.");
-        } else {
-            if(taiKhoan.getMatKhau().equals(pass)){
-                MainFrame frame = MainFrame.getInstance();
-                frame.setTaiKhoan(taiKhoan);
-                if(taiKhoan.getQuyen() == 1) {
-                    frame.updateTwoPanel(new Navigation(), new DanhSachLopView());
-                } else if(taiKhoan.getQuyen() == 2){
-                    frame.updateTwoPanel(new Navigation(), new TraCuuDiemView());
-                }
-                frame.setVisible(true);
+        try {
+            TaiKhoan taiKhoan = TaiKhoanDAO.layTaiKhoan(user);
+            lblNotification.setText("2");
+            if(taiKhoan == null){
+                lblNotification.setText("No account have this username.");
             } else {
-                lblNotification.setText("Wrong password.");
+                if(taiKhoan.getMatKhau().equals(pass)){
+                    MainFrame frame = MainFrame.getInstance();
+                    frame.setTaiKhoan(taiKhoan);
+                    if(taiKhoan.getQuyen() == 1) {
+                        frame.updateTwoPanel(new Navigation(), new DanhSachLopView());
+                    } else if(taiKhoan.getQuyen() == 2){
+                        frame.updateTwoPanel(new Navigation(), new TraCuuDiemView());
+                    }
+                    frame.setVisible(true);
+                } else {
+                    lblNotification.setText("Wrong password.");
+                }
             }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
 
     }//GEN-LAST:event_btnLoginActionPerformed
