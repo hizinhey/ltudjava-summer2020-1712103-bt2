@@ -131,7 +131,6 @@ public class Navigation extends javax.swing.JPanel {
         if(userlogin.getQuyen() == 2){
             btnNavi1.setEnabled(false);
             btnNavi2.setEnabled(false);
-            btnNavi4.setEnabled(false);
         }
 
     }// </editor-fold>//GEN-END:initComponents

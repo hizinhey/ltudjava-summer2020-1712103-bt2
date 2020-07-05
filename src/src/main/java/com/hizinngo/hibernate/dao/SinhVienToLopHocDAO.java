@@ -1,5 +1,6 @@
 package com.hizinngo.hibernate.dao;
 
+import com.hizinngo.hibernate.entity.MonHoc;
 import com.hizinngo.hibernate.entity.SinhVien;
 import com.hizinngo.hibernate.entity.SinhVienToLopHoc;
 import com.hizinngo.hibernate.entity.subclass.PackSinhVien;
@@ -160,7 +161,26 @@ public class SinhVienToLopHocDAO {
         return ds;
     }
 
+    public static List<SinhVienToLopHoc> layDanhSachSinhVienMonHoc(String MSSV, String monHoc){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<SinhVienToLopHoc> ds = null;
+        try{
+            String hql = "select new com.hizinngo.hibernate.entity.SinhVienToLopHoc(" +
+                    "svlh.MSSV, svlh.maLop, svlh.maMH, svlh.diemGK, svlh.diemCK, svlh.diemKhac, svlh.diemTong) " +
+                    "from  SinhVienToLopHoc svlh " +
+                    "where svlh.MSSV = '" + MSSV + "' and svlh.maMH = '"+ monHoc +"'";
+            Query query = session.createQuery(hql);
+            ds = query.list();
+        } catch (HibernateException ex) {
+            //Log the exception
+            System.err.println(ex);
+        } finally {
+            session.close();
+        }
+        return ds;
+    }
+
     public static void main(String[] args) {
-        System.out.println(layDiemSinhViem("1842002").size());
+        System.out.println(layDanhSachSinhVienMonHoc("1742005", "CTT001").get(0).getMSSV());
     }
 }

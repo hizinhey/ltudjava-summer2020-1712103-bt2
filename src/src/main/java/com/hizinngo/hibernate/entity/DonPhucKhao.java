@@ -9,7 +9,7 @@ public class DonPhucKhao {
     private String MSSV;
     private String HoTen;
     private String Mon;
-    private String CotDiem;
+    private int CotDiem;
     private float DiemMongMuon;
     private String LiDo;
     private int TrangThai;
@@ -17,7 +17,7 @@ public class DonPhucKhao {
 
 
     public DonPhucKhao(){};
-    public DonPhucKhao(int id, String MSSV, String hoTen, String mon, String cotDiem, float diemMongMuon, String liDo, int trangThai, DotPhucKhao dotPhucKhao) {
+    public DonPhucKhao(int id, String MSSV, String hoTen, String mon, int cotDiem, float diemMongMuon, String liDo, int trangThai, DotPhucKhao dotPhucKhao) {
         this.id = id;
         this.MSSV = MSSV;
         HoTen = hoTen;
@@ -30,7 +30,6 @@ public class DonPhucKhao {
     }
 
     @Id
-    @GeneratedValue
     @Column(name = "id")
     public int getId() {
         return id;
@@ -68,11 +67,11 @@ public class DonPhucKhao {
     }
 
     @Column(name = "CotDiem")
-    public String getCotDiem() {
+    public int getCotDiem() {
         return CotDiem;
     }
 
-    public void setCotDiem(String cotDiem) {
+    public void setCotDiem(int cotDiem) {
         CotDiem = cotDiem;
     }
 

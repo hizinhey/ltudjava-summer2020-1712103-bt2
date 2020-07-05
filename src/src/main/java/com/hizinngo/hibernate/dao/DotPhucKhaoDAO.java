@@ -17,7 +17,7 @@ public class DotPhucKhaoDAO {
         Session session = HibernateUtil.getSessionFactory()
                 .openSession();
         try {
-            String hql = "from dotphuckhao";
+            String hql = "from DotPhucKhao";
             Query query = session.createQuery(hql);
             ds = query.list();
         } catch (HibernateException ex) {

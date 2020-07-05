@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- *
  * @author nghia
  */
 public class TraCuuDiemView extends javax.swing.JPanel {
@@ -44,7 +43,7 @@ public class TraCuuDiemView extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        setPreferredSize(new Dimension(940,768));
+        setPreferredSize(new Dimension(940, 768));
 
         btnImport = new javax.swing.JButton();
         txtClass = new javax.swing.JTextField();
@@ -55,7 +54,7 @@ public class TraCuuDiemView extends javax.swing.JPanel {
         btnManage = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
 
-        if(MainFrame.getInstance().getTaiKhoan().getQuyen() == 2){
+        if (MainFrame.getInstance().getTaiKhoan().getQuyen() == 2) {
             btnImport.setEnabled(false);
             btnUpdate.setEnabled(false);
             btnSearch.setEnabled(false);
@@ -65,15 +64,15 @@ public class TraCuuDiemView extends javax.swing.JPanel {
 
             //them csdl
             lblClass.setText(MainFrame.getInstance().getTaiKhoan().getTaikhoan());
-            List<PackDiemMonHoc> list=SinhVienToLopHocDAO.layDiemSinhViem(MainFrame.getInstance().getTaiKhoan().getTaikhoan());
-            if(list != null){
+            List<PackDiemMonHoc> list = SinhVienToLopHocDAO.layDiemSinhViem(MainFrame.getInstance().getTaiKhoan().getTaikhoan());
+            if (list != null) {
                 Vector data = new Vector();
 
-                for(int i = 1; i<= list.size(); i++){
+                for (int i = 1; i <= list.size(); i++) {
                     PackDiemMonHoc element = list.get(i - 1);
 
                     Vector row = new Vector();
-                    row.add(i+"");
+                    row.add(i + "");
                     row.add(element.getMaMH());
                     row.add(element.getTenMH());
                     row.add(element.getDiem1());
@@ -94,22 +93,33 @@ public class TraCuuDiemView extends javax.swing.JPanel {
                 header.add("Conlusion");
 
                 jTable1.setModel(new DefaultTableModel(data, header));
-            } else {
-                lblClass.setText("17CTT1");
-
-                jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                        new Object [][] {
-                                {null, null, null, null, null, null, null},
-                                {null, null, null, null, null, null, null},
-                                {null, null, null, null, null, null, null},
-                                {null, null, null, null, null, null, null}
-                        },
-                        new String [] {
-                                "No", "Student ID", "Name", "Middel scores", "Final scores", "Other scores", "Conlusion"
-                        }
-                ));
             }
+        } else {
+            lblClass.setText("Class");
+
+            jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                    new Object[][]{
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null},
+                            {null, null,null,null,null,null,null}
+
+                    },
+                    new String[]{
+                            "No", "Student ID", "Name", "Middel scores", "Final scores", "Other scores", "Conlusion"
+                    }
+            ));
         }
+
 
         btnImport.setText("Import CSV");
         btnImport.addActionListener(new ActionListener() {
@@ -133,12 +143,12 @@ public class TraCuuDiemView extends javax.swing.JPanel {
                         lop = br.readLine();
                         System.out.println(lop);
                         List<String> strLop = Arrays.asList(lop.split("-"));
-                        System.out.println(strLop.size()+ " con heo con");
+                        System.out.println(strLop.size() + " con heo con");
                         while ((temp = br.readLine()) != null) {
                             List<String> tempStr = Arrays.asList(temp.split(","));
-                            System.out.println(tempStr.size()+ " con heo con");
+                            System.out.println(tempStr.size() + " con heo con");
                             list.add(new SinhVienToLopHoc(tempStr.get(1), strLop.get(0), strLop.get(1), Float.parseFloat(tempStr.get(3)),
-                                    Float.parseFloat(tempStr.get(4)),Float.parseFloat(tempStr.get(5)),Float.parseFloat(tempStr.get(6))));
+                                    Float.parseFloat(tempStr.get(4)), Float.parseFloat(tempStr.get(5)), Float.parseFloat(tempStr.get(6))));
                         }
 
                         for (SinhVienToLopHoc element : list) {
@@ -171,14 +181,14 @@ public class TraCuuDiemView extends javax.swing.JPanel {
 
                     List<PackSinhVien> list = new ArrayList<>();
                     list = SinhVienToLopHocDAO.layDanhSachDiemSinhVienTheoLop(temp.get(0), temp.get(1));
-                    if(list != null){
+                    if (list != null) {
                         Vector data = new Vector();
 
-                        for(int i = 1; i<= list.size(); i++){
+                        for (int i = 1; i <= list.size(); i++) {
                             PackSinhVien element = list.get(i - 1);
-                            
+
                             Vector row = new Vector();
-                            row.add(i+"");
+                            row.add(i + "");
                             row.add(element.getMSSV());
                             row.add(element.getName());
                             row.add(element.getDiemGK());
@@ -226,8 +236,8 @@ public class TraCuuDiemView extends javax.swing.JPanel {
         btnManage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new CapNhatdiem(lblClass.getText().substring(0,5));
-                frame.setSize(960,440);
+                JFrame frame = new CapNhatdiem(lblClass.getText().substring(0, 5));
+                frame.setSize(960, 440);
                 frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
                 frame.setVisible(true);
             }
@@ -247,45 +257,46 @@ public class TraCuuDiemView extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(btnManage, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(btnImport)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearch))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(46, 46, 46)
+                                                .addComponent(btnManage, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(btnImport)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnSearch))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSearch))
-                    .addComponent(btnImport))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                    .addComponent(btnManage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnSearch)
+                                        .addComponent(btnImport))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                                        .addComponent(btnManage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
 

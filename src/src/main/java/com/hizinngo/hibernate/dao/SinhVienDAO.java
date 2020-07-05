@@ -16,7 +16,7 @@ public class SinhVienDAO {
         Session session = HibernateUtil.getSessionFactory()
                 .openSession();
         try {
-            String hql = "from sinhvien";
+            String hql = "from SinhVien";
             Query query = session.createQuery(hql);
             ds = query.list();
         } catch (HibernateException ex) {

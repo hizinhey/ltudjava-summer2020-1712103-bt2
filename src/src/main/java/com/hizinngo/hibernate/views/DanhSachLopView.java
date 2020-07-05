@@ -26,7 +26,6 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author nghia
  */
 public class DanhSachLopView extends javax.swing.JPanel {
@@ -47,7 +46,7 @@ public class DanhSachLopView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         // seft
-        setPreferredSize(new Dimension(940,768));
+        setPreferredSize(new Dimension(940, 768));
 
         btnImport = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
@@ -86,26 +85,36 @@ public class DanhSachLopView extends javax.swing.JPanel {
         });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "No", "Student ID", "Name", "Gender", "Person ID"
-            }
+                new Object[][]{
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null},
+                        {null, null,null,null,null,null,null}
+                },
+                new String[]{
+                        "No", "Student ID", "Name", "Gender", "Person ID"
+                }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
-        jTable1.setRowHeight(30);
+        jTable1.setRowHeight(40);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -125,38 +134,40 @@ public class DanhSachLopView extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnImport)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAdd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnImport)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnAdd)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnSearch)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnImport)
-                    .addComponent(btnAdd)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
-                .addGap(7, 7, 7))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnImport)
+                                        .addComponent(btnAdd)
+                                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnSearch))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblClass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -165,10 +176,9 @@ public class DanhSachLopView extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchActionPerformed
 
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
-        // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
 
-        if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File csv = fileChooser.getSelectedFile().getAbsoluteFile();
             BufferedReader br = null;
             try {
@@ -179,17 +189,17 @@ public class DanhSachLopView extends javax.swing.JPanel {
 
             String lop, temp;
             List<SinhVien> list = new ArrayList<>();
-            List<String> tempStr= new ArrayList<>();
+            List<String> tempStr = new ArrayList<>();
 
             try {
                 lop = br.readLine();
-                while ((temp = br.readLine()) != null){
+                while ((temp = br.readLine()) != null) {
                     tempStr = Arrays.asList(temp.split(","));
-                    list.add(new SinhVien(tempStr.get(1), tempStr.get(2),tempStr.get(3),tempStr.get(4), 1, lop));
+                    list.add(new SinhVien(tempStr.get(1), tempStr.get(2), tempStr.get(3), tempStr.get(4), 1, lop));
                 }
 
                 LopDAO.themLop(new Lop(lop));
-                for(SinhVien e: list){
+                for (SinhVien e : list) {
                     SinhVienDAO.themSinhVien(e);
                     TaiKhoanDAO.taoTaiKhoan(new TaiKhoan(e.getMSSV(), e.getMSSV(), 2));
                 }
@@ -202,15 +212,14 @@ public class DanhSachLopView extends javax.swing.JPanel {
         }
 
 
-
     }//GEN-LAST:event_btnImportActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         JFrame addStudent = new JFrame();
-        addStudent.setSize(350,700);
+        addStudent.setSize(350, 700);
         addStudent.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        addStudent.setLocation(360,100);
+        addStudent.setLocation(360, 100);
         addStudent.add(new ThemSinhVienView(addStudent));
         addStudent.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
@@ -219,18 +228,18 @@ public class DanhSachLopView extends javax.swing.JPanel {
         // TODO add your handling code here:
         String classID = txtSearch.getText();
         List<SinhVien> list = null;
-        if(classID.length() == 5){
+        if (classID.length() == 5) {
             list = SinhVienDAO.layDanhSachSinhVienTheoLop(classID);
-        } else if(classID.contains("-")){
+        } else if (classID.contains("-")) {
             List<String> temp = Arrays.asList(classID.split("-"));
-            list = SinhVienToLopHocDAO.layDanhSachSinhVienTheoLopHoc(temp.get(0),temp.get(1));
+            list = SinhVienToLopHocDAO.layDanhSachSinhVienTheoLopHoc(temp.get(0), temp.get(1));
         }
         Vector data = new Vector();
 
-        for(int i = 1; i<= list.size(); i++){
+        for (int i = 1; i <= list.size(); i++) {
             SinhVien element = list.get(i - 1);
             Vector row = new Vector();
-            row.add(i+"");
+            row.add(i + "");
             row.add(element.getMSSV());
             row.add(element.getTen());
             row.add(element.getGioiTinh());
